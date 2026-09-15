@@ -20,7 +20,7 @@
 **Files:**
 - Create: `src/procurepilot/business/repositories.py`
 - Create: `src/procurepilot/business/query_models.py`
-- Test: `tests/unit/business/test_repository_contracts.py`
+- Test: `src/tests/unit/business/test_repository_contracts.py`
 
 定义异步 Protocol：`SupplierRepository`、`PartRepository`、`QuotationRepository`、`InventoryRepository`、`OrderRepository`、`ApprovalRepository`、`AuditRepository` 和 `UnitOfWork`。查询条件使用显式对象，不接受任意 SQL、字典或字段名。
 
@@ -48,7 +48,7 @@ class UnitOfWork(Protocol):
 
 **Files:**
 - Create: `src/procurepilot/business/in_memory.py`
-- Test: `tests/unit/business/test_in_memory_uow.py`
+- Test: `src/tests/unit/business/test_in_memory_uow.py`
 
 先写失败测试，证明：未调用 `commit()` 的改动在退出上下文后回滚；异常时回滚；提交后数据可见；返回对象不会通过共享引用绕过 Repository 更新；重复业务 ID 和幂等键产生冲突。
 
@@ -59,7 +59,7 @@ class UnitOfWork(Protocol):
 **Files:**
 - Create: `src/procurepilot/business/services/catalog.py`
 - Create: `src/procurepilot/business/services/comparison.py`
-- Test: `tests/unit/business/services/test_comparison_service.py`
+- Test: `src/tests/unit/business/services/test_comparison_service.py`
 
 固定接口：
 
@@ -79,7 +79,7 @@ InventoryService.get_warnings(criteria)
 
 **Files:**
 - Create: `src/procurepilot/business/services/order.py`
-- Test: `tests/unit/business/services/test_order_service.py`
+- Test: `src/tests/unit/business/services/test_order_service.py`
 
 固定接口：
 
@@ -102,10 +102,10 @@ M2 先实现订单预校验、规范化参数和幂等接口；审批实体在 M
 错误层级固定为：`DomainValidationError`、`EntityNotFoundError`、`ConflictError`、`PermissionDeniedError`、`ApprovalRequiredError`、`InfrastructureError`。禁止在业务层返回 HTTP 状态码或 MCP 错误信封。
 
 ```powershell
-& 'D:\py_venv\harness_agent\Scripts\python.exe' -m pytest tests/unit/business -v
-& 'D:\py_venv\harness_agent\Scripts\python.exe' -m ruff check src tests
+& 'D:\py_venv\harness_agent\Scripts\python.exe' -m pytest src/tests/unit/business -v
+& 'D:\py_venv\harness_agent\Scripts\python.exe' -m ruff check src
 & 'D:\py_venv\harness_agent\Scripts\python.exe' -m mypy src
-& 'D:\py_venv\harness_agent\Scripts\python.exe' -m compileall -q src tests
+& 'D:\py_venv\harness_agent\Scripts\python.exe' -m compileall -q src
 git diff --check
 ```
 

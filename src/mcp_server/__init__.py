@@ -1,0 +1,2 @@
+"""ProcurePilot MCP adapter package."""
+

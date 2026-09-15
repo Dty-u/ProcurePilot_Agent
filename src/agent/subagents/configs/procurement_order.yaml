@@ -1,0 +1,13 @@
+name: procurement-order
+description: 收集并核验订单字段，请求 HITL 人工审批，然后调用受保护的订单工具。
+tool_names:
+  - order_cancel
+  - order_create
+  - order_search_details
+  - order_update
+  - part_query
+  - quotation_query
+  - request_order_info
+  - supplier_query
+model_call_limit: 50
+tool_call_limit: 200

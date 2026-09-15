@@ -22,7 +22,6 @@ build/
 dist/
 
 # Runtime data
-*.sqlite3
 *.log
 logs/
 artifacts/

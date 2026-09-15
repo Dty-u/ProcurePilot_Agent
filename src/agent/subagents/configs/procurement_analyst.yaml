@@ -1,0 +1,11 @@
+name: procurement-analyst
+description: 执行只读采购分析、对比、报告和建议。
+tool_names:
+  - inventory_warning
+  - order_search_details
+  - part_by_supplier
+  - part_query
+  - quotation_query
+  - supplier_query
+model_call_limit: 50
+tool_call_limit: 200
