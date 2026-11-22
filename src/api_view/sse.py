@@ -48,7 +48,10 @@ class SSEMapper:
             if mode == "values":
                 interrupts = chunk.get("__interrupt__") if isinstance(chunk, dict) else None
                 if interrupts:
-                    yield self._event("interrupt", {"interrupts": _safe(interrupts, self._max_payload_chars)})
+                    yield self._event(
+                        "interrupt",
+                        {"interrupts": _safe_interrupts(interrupts, self._max_payload_chars)},
+                    )
                     yield self._event("done", {"interrupted": True})
                     return
                 continue
@@ -138,6 +141,24 @@ def _safe(value: Any, limit: int) -> Any:
     if hasattr(value, "value"):
         return _safe(value.value, limit)
     return value if isinstance(value, (int, float, bool)) or value is None else str(value)
+
+
+def _safe_interrupts(interrupts: Any, limit: int) -> list[dict[str, Any]]:
+    """保留恢复所需的服务端中断 ID，同时脱敏其展示内容。"""
+
+    if not isinstance(interrupts, (list, tuple)):
+        return []
+    result: list[dict[str, Any]] = []
+    for interrupt in interrupts:
+        interrupt_id = getattr(interrupt, "id", None)
+        value = getattr(interrupt, "value", None)
+        if isinstance(interrupt, dict):
+            interrupt_id = interrupt.get("id", interrupt_id)
+            value = interrupt.get("value", value)
+        if not isinstance(interrupt_id, str) or value is None:
+            continue
+        result.append({"id": interrupt_id, "value": _safe(value, limit)})
+    return result
 
 
 def encode_sse(envelope: SSEEnvelope) -> str:

@@ -19,6 +19,25 @@ async def test_values_interrupt_has_priority_and_finishes_stream() -> None:
 
 
 @pytest.mark.asyncio
+async def test_interrupt_event_keeps_the_server_generated_resume_id() -> None:
+    class Interrupt:
+        id = "interrupt-1"
+        value = {"kind": "order_info_request", "missing_fields": ["supplier_id"]}
+
+    async def chunks():
+        yield "values", {"__interrupt__": [Interrupt()]}
+
+    events = [item async for item in SSEMapper("thread-1").map(chunks())]
+
+    assert events[0].payload["interrupts"] == [
+        {
+            "id": "interrupt-1",
+            "value": {"kind": "order_info_request", "missing_fields": ["supplier_id"]},
+        }
+    ]
+
+
+@pytest.mark.asyncio
 async def test_tool_events_are_redacted_and_bounded() -> None:
     async def chunks():
         yield "messages", {

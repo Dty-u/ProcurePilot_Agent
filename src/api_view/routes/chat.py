@@ -5,6 +5,8 @@ from __future__ import annotations
 import logging
 from collections.abc import AsyncIterator
 from datetime import UTC, datetime, timedelta
+from itertools import count
+from time import time_ns
 from typing import Any, Literal
 from uuid import uuid4
 
@@ -30,6 +32,7 @@ from procurepilot.observability import audit_fields
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 logger = logging.getLogger(__name__)
+_MESSAGE_SEQUENCE = count()
 
 
 def _trusted_context(request: Request, thread_id: str) -> ProcurementContext:
@@ -54,7 +57,8 @@ async def _save_message(
         context,
         DisplayMessage(
             thread_id=context.thread_id,
-            message_id=f"msg-{uuid4()}",
+            # 展示历史按时间和 ID 排序；计数器补足被冻结或低精度时钟的稳定写入顺序。
+            message_id=f"msg-{time_ns()}-{next(_MESSAGE_SEQUENCE):020d}-{uuid4()}",
             role=role,
             content=content,
             occurred_at=datetime.now(UTC),

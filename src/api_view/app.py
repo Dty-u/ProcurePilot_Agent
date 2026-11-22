@@ -8,6 +8,7 @@ from typing import Any
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from api_view.auth import HeaderAuthenticator
@@ -35,6 +36,13 @@ def create_app(
 
     app = FastAPI(title="ProcurePilot API", version="1.0", lifespan=lifespan)
     app.state.authenticator = authenticator
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=list(configured.api_cors_origins),
+        allow_credentials=False,
+        allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
+        allow_headers=["Content-Type", "X-User-ID", "X-User-Name", "X-Roles"],
+    )
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(

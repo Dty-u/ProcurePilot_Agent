@@ -4,7 +4,7 @@ ProcurePilot Agent 是一个面向企业采购场景的 Python Agent 工程。�
 
 ## 当前状态
 
-当前已完成 M0–M10 的源码和非 live 自动验收：在 M0–M8 的领域层、MCP、DeepAgents、HITL 和 MySQL 状态基础上，M9 增加 OpenSandbox 适配、DeepAgents Sandbox Backend 和本地审核的供应商比价 Skill；M10 增加 FastAPI、SSE、HTTP 恢复和展示历史接口。
+当前已完成 M0–M10 的源码和非 live 自动验收：在 M0–M8 的领域层、MCP、DeepAgents、HITL 和 MySQL 状态基础上，M9 增加 OpenSandbox 适配、DeepAgents Sandbox Backend 和本地审核的供应商比价 Skill；M10 增加 FastAPI、SSE、HTTP 恢复和展示历史接口。根目录 `web/` 提供独立的 Vue 采购工作台，用于会话回放、流式聊天、工具过程和 HITL 补充/审批。
 
 Agent 状态仍全部使用 MySQL，不使用 SQLite。API 为每个可信请求绑定 MCP 身份和独立 Sandbox，Agent 的文件、命令和 Skill 脚本不回退到宿主机执行。当前 Docker Engine 未可用，因此 OpenSandbox 真实容器生命周期验收仍为“未运行”；生产认证适配器也未提供，`APP_ENV=production` 会失败关闭。模块导入不会连接模型、数据库、MCP 或 Sandbox。
 
@@ -58,6 +58,31 @@ $env:PYTHONPATH = (Resolve-Path 'src').Path
 ```
 
 已实现 `POST /api/chat/stream`、`POST /api/chat/{thread_id}/resume`、`GET /api/history`、`GET /api/history/{thread_id}` 和 `DELETE /api/history/{thread_id}`。SSE 仅输出 `token`、`tool_start`、`tool_args`、`tool_result`、`tool_end`、`interrupt`、`done` 七类事件。
+
+`API_CORS_ORIGINS` 是 JSON 字符串数组，默认仅包含本地工作台的 `127.0.0.1:3000` 和 `localhost:3000`。开发环境使用 Vite 代理时请求同源，独立部署前端时由该白名单控制跨域访问。
+
+## Vue 采购工作台
+
+先保持 FastAPI 在 `127.0.0.1:18000` 运行。另开一个 PowerShell 窗口：
+
+```powershell
+Set-Location web
+Copy-Item -LiteralPath '.env.example' -Destination '.env.local'
+pnpm install
+pnpm dev
+```
+
+浏览器访问 `http://127.0.0.1:3000`。`.env.local` 的 `VITE_DEV_USER_ID`、`VITE_DEV_USER_NAME`、`VITE_DEV_ROLES` 仅在开发/测试环境转换为可信 Header，绝不进入聊天请求体或提交到 Git。工作台的“清除展示记录”只调用历史消息删除接口，不会删除 Agent checkpoint、中断或会话归属。
+
+前端质量命令：
+
+```powershell
+Set-Location web
+pnpm test
+pnpm run type-check
+pnpm run lint
+pnpm run build
+```
 
 MySQL 初始迁移只在已核对 `.env` 中的开发库连接后手动执行：
 

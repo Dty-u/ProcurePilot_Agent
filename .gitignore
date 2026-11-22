@@ -20,6 +20,9 @@ htmlcov/
 # Build artifacts
 build/
 dist/
+web/node_modules/
+web/dist/
+web/.env.local
 
 # Runtime data
 *.log

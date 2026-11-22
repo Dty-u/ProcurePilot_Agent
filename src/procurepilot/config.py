@@ -48,6 +48,10 @@ class Settings(BaseSettings):
     mcp_host: str = "127.0.0.1"
     mcp_port: int = Field(default=8001, ge=1, le=65535)
     fastapi_port: int = Field(default=18000, ge=1, le=65535)
+    api_cors_origins: tuple[str, ...] = (
+        "http://127.0.0.1:3000",
+        "http://localhost:3000",
+    )
     opensandbox_base_url: HttpUrl = HttpUrl("http://127.0.0.1:8080")
     opensandbox_api_key: SecretStr | None = None
     opensandbox_image: str | None = None
