@@ -1,4 +1,4 @@
-"""Supplier comparison service with explicit exclusion evidence."""
+"""附带显式排除依据的供应商比价服务。"""
 
 from collections.abc import Callable
 from dataclasses import dataclass

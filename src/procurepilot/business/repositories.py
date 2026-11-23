@@ -1,4 +1,4 @@
-"""Storage-agnostic repository and transaction contracts."""
+"""与存储无关的仓储与事务契约。"""
 
 from datetime import datetime
 from types import TracebackType

@@ -1,4 +1,4 @@
-"""Create the initial procurement persistence schema."""
+"""创建采购业务的初始持久化表结构。"""
 
 from collections.abc import Sequence
 

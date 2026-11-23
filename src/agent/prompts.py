@@ -1,4 +1,4 @@
-"""Main coordinator instructions for constrained procurement delegation."""
+"""主协调 Agent 的受约束采购任务委派指令。"""
 
 MAIN_SYSTEM_PROMPT = """
 你是 ProcurePilot 协调 Agent。你的职责是路由和汇总，不得自行执行采购业务写操作。将分析、

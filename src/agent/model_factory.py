@@ -1,4 +1,4 @@
-"""Explicit construction of the configured OpenAI-compatible chat model."""
+"""显式构造已配置的 OpenAI 兼容聊天模型。"""
 
 from typing import Any, cast
 
@@ -9,7 +9,7 @@ from procurepilot.config import Settings
 
 
 def create_chat_model(settings: Settings) -> BaseChatModel:
-    """Create the real model only when explicitly called by application startup."""
+    """仅在应用启动时显式调用才创建真实模型。"""
 
     try:
         runtime = settings.require_model_config()

@@ -1,1 +1,1 @@
-"""Cross-entity procurement policies."""
+"""跨实体的采购策略。"""

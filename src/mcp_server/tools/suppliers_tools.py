@@ -1,4 +1,4 @@
-"""Supplier and quotation MCP tool adapters."""
+"""供应商与报价 MCP 工具适配器。"""
 
 import asyncio
 from datetime import UTC, datetime

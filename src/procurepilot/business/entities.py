@@ -1,4 +1,4 @@
-"""Procurement entities with deterministic domain invariants."""
+"""具有确定性领域不变量的采购实体。"""
 
 from dataclasses import dataclass, replace
 from datetime import datetime

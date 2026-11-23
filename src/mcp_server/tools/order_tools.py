@@ -1,4 +1,4 @@
-"""Read-only purchase-order MCP tool adapter."""
+"""只读采购订单 MCP 工具适配器。"""
 
 import asyncio
 from collections.abc import Callable

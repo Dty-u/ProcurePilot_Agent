@@ -1,4 +1,4 @@
-"""Auditable least-privilege tool manifests for every procurement agent."""
+"""各采购 Agent 可审计的最小权限工具清单。"""
 
 from collections.abc import Sequence
 

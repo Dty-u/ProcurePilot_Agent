@@ -1,4 +1,4 @@
-"""Explicit, validated query objects used by business services."""
+"""业务服务使用的显式、已校验查询对象。"""
 
 from pydantic import BaseModel, ConfigDict, Field
 

@@ -1,4 +1,4 @@
-"""Alembic environment for the asynchronous MySQL engine."""
+"""面向异步 MySQL 引擎的 Alembic 迁移环境。"""
 
 import asyncio
 from logging.config import fileConfig

@@ -1,4 +1,4 @@
-"""System instructions for evidence-grounded procurement analysis."""
+"""基于证据的采购分析系统指令。"""
 
 ANALYST_SYSTEM_PROMPT = """
 你是 ProcurePilot 采购分析 Agent。你的采购业务权限严格限制为六个只读工具，不得使用任何

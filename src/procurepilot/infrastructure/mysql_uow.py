@@ -1,4 +1,4 @@
-"""SQLAlchemy-backed Unit of Work with stable error mapping."""
+"""基于 SQLAlchemy 的工作单元，带稳定的错误映射。"""
 
 from collections.abc import Callable
 from types import TracebackType

@@ -1,4 +1,4 @@
-"""Strict Pydantic schemas for untrusted procurement input."""
+"""用于不可信采购输入的严格 Pydantic 模型。"""
 
 from datetime import datetime
 from decimal import Decimal

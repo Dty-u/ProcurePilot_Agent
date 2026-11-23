@@ -1,1 +1,1 @@
-"""Deterministic procurement domain model."""
+"""确定性的采购领域模型。"""

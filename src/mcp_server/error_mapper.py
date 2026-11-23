@@ -1,4 +1,4 @@
-"""Translate internal exceptions into safe MCP error contracts."""
+"""将内部异常转换为安全的 MCP 错误契约。"""
 
 import logging
 
@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 def error_envelope(error: Exception, *, trace_id: str) -> ToolEnvelope[None]:
-    """Map an exception without exposing stack traces or dependency details."""
+    """映射异常，且不暴露堆栈或依赖细节。"""
 
     code: ToolErrorCode
     retryable = False

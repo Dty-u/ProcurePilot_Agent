@@ -1,4 +1,4 @@
-"""Executable entry point for the standalone ProcurePilot MCP process."""
+"""独立 ProcurePilot MCP 进程的可执行入口。"""
 
 from mcp_server.bootstrap import create_service_container
 from mcp_server.context import MissingCallerContextProvider

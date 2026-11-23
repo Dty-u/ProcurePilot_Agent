@@ -1,4 +1,4 @@
-"""Async SQLAlchemy repositories and explicit domain/ORM mappers."""
+"""异步 SQLAlchemy 仓储及显式的领域/ORM 映射器。"""
 
 from datetime import UTC, datetime
 from typing import Any, cast

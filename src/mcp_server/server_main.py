@@ -1,4 +1,4 @@
-"""MCP server factory with explicit dependency lifecycle."""
+"""具有显式依赖生命周期的 MCP 服务工厂。"""
 
 from collections.abc import AsyncIterator, Awaitable, Callable
 from contextlib import asynccontextmanager
@@ -76,7 +76,7 @@ class ServiceContainer:
 
 
 def create_mcp_server(settings: Settings, service_container: ServiceContainer) -> MCPServer:
-    """Build a server without opening database connections at import time."""
+    """构建服务实例，导入时不打开数据库连接。"""
 
     @asynccontextmanager
     async def lifespan(_server: MCPServer) -> AsyncIterator[ServiceContainer]:

@@ -1,4 +1,4 @@
-"""Part MCP tool adapters."""
+"""物料 MCP 工具适配器。"""
 
 import asyncio
 from datetime import UTC, datetime

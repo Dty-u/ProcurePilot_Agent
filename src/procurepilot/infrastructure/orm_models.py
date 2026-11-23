@@ -1,4 +1,4 @@
-"""SQLAlchemy persistence models kept outside the procurement domain layer."""
+"""置于采购领域层之外的 SQLAlchemy 持久化模型。"""
 
 from datetime import datetime
 from decimal import Decimal

@@ -1,2 +1,2 @@
-"""ProcurePilot MCP adapter package."""
+"""ProcurePilot MCP 适配器包。"""
 

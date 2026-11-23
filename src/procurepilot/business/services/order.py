@@ -1,4 +1,4 @@
-"""Purchase order preparation and atomic execution services."""
+"""采购订单的准备与原子执行服务。"""
 
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -150,7 +150,7 @@ class OrderService:
         self._approval_validator = approval_validator or DenyAllApprovalValidator()
 
     async def record_approval(self, approval: ApprovalGrant) -> None:
-        """Persist a trusted UI/API decision; this method is never exposed as an Agent tool."""
+        """持久化来自可信 UI/API 的审批决定；此方法绝不作为 Agent 工具暴露。"""
 
         async with self._uow_factory() as uow:
             operation = await uow.operations.get_by_id(approval.operation_id)
@@ -277,7 +277,7 @@ class OrderService:
         request: ExecuteSavedOperationRequest,
         context: ActorContext,
     ) -> PurchaseOrder:
-        """Execute only the immutable operation snapshot bound to a trusted approval."""
+        """仅执行与可信审批绑定的不可变操作快照。"""
 
         self._require_role(context, "order_executor")
         if context.thread_id is None:

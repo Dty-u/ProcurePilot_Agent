@@ -1,2 +1,2 @@
-"""ProcurePilot Agent orchestration package."""
+"""ProcurePilot Agent 编排包。"""
 

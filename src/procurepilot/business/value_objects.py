@@ -1,4 +1,4 @@
-"""Immutable value objects for money, quantity, and time."""
+"""金额、数量与时间的不可变值对象。"""
 
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -51,7 +51,7 @@ class PositiveQuantity:
 
 
 def ensure_utc(value: datetime) -> datetime:
-    """Require an aware datetime and normalize it to UTC."""
+    """要求带时区的 datetime，并统一转换为 UTC。"""
     if value.tzinfo is None or value.utcoffset() is None:
         raise ValueError("Datetime must be timezone-aware")
     return value.astimezone(UTC)

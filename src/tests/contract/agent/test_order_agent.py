@@ -80,7 +80,7 @@ class ResumableOrderWriteModel(OrderWriteModel):
 
 def named_tools(names: frozenset[str]) -> list[StructuredTool]:
     def placeholder() -> str:
-        """Test placeholder."""
+        """测试占位。"""
         return "ok"
 
     return [

@@ -1,2 +1,2 @@
-"""Application services that orchestrate procurement domain objects."""
+"""编排采购领域对象的应用服务。"""
 

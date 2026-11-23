@@ -1,4 +1,4 @@
-"""Restricted procurement analyst construction and output grounding."""
+"""受限采购分析 Agent 的构造与输出溯源校验。"""
 
 import json
 from decimal import Decimal
@@ -37,7 +37,7 @@ EXPECTED_TOOL_NAMES = frozenset(
 
 
 class ProcurementAnalyst:
-    """Small safety wrapper around the compiled LangGraph Agent."""
+    """包装已编译 LangGraph Agent 的轻量安全层。"""
 
     def __init__(self, graph: Any, tool_names: tuple[str, ...]) -> None:
         self._graph = graph
@@ -192,7 +192,7 @@ async def create_analyst_agent(
     backend: Any = StateBackend,
     skills: list[str] | None = None,
 ) -> ProcurementAnalyst:
-    """Build the analyst through the pinned DeepAgents factory."""
+    """通过锁定版本的 DeepAgents 工厂构建分析 Agent。"""
 
     tool_names = tuple(sorted(tool.name for tool in tools))
     if set(tool_names) != EXPECTED_TOOL_NAMES or len(tool_names) != len(EXPECTED_TOOL_NAMES):

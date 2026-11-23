@@ -1,4 +1,4 @@
-"""Composition root for the MySQL-backed MCP service container."""
+"""基于 MySQL 的 MCP 服务容器的组合根。"""
 
 from typing import cast
 
@@ -22,7 +22,7 @@ def create_service_container(
     settings: Settings,
     caller_context_provider: CallerContextProvider,
 ) -> ServiceContainer:
-    """Build concrete MCP dependencies without connecting until a tool is called."""
+    """构建具体的 MCP 依赖，直到工具被调用时才建立连接。"""
 
     engine = create_database_engine(settings)
     session_factory = create_session_factory(engine)

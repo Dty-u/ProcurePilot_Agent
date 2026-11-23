@@ -1,4 +1,4 @@
-"""Validated order-operation snapshots and stable approval hashes."""
+"""经校验的订单操作快照与稳定的审批哈希。"""
 
 import hashlib
 import json

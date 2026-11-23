@@ -1,4 +1,4 @@
-"""Application settings loaded without performing external I/O."""
+"""加载时不执行外部 I/O 的应用配置。"""
 
 from typing import Any, Literal, Self
 from urllib.parse import urlsplit
@@ -8,7 +8,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class ModelRuntimeConfig(BaseModel):
-    """Validated values required to initialize a real chat model."""
+    """初始化真实聊天模型所需的已校验配置值。"""
 
     model_config = ConfigDict(frozen=True)
 
@@ -18,7 +18,7 @@ class ModelRuntimeConfig(BaseModel):
 
 
 class Settings(BaseSettings):
-    """Central application configuration sourced from environment variables."""
+    """从环境变量读取的集中式应用配置。"""
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -75,7 +75,7 @@ class Settings(BaseSettings):
             raise ValueError("MCP_PORT must differ from FASTAPI_PORT")
 
     def require_model_config(self) -> ModelRuntimeConfig:
-        """Return model settings only when credentials are explicitly required."""
+        """仅在明确需要凭据时返回模型配置。"""
         if self.model_api_key is None:
             raise ValueError("MODEL_API_KEY is required to initialize a real model")
 

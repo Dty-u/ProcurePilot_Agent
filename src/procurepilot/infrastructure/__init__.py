@@ -1,2 +1,2 @@
-"""Infrastructure adapters for durable storage and external systems."""
+"""面向持久化存储与外部系统的基础设施适配器。"""
 

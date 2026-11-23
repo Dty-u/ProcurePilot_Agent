@@ -1,2 +1,2 @@
-"""Controlled Agent tool adapters."""
+"""受控的 Agent 工具适配器。"""
 

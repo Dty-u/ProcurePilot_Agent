@@ -1,4 +1,4 @@
-"""Add parameter-bound HITL operation and approval fields."""
+"""新增与参数绑定的 HITL 操作及审批字段。"""
 
 from collections.abc import Sequence
 

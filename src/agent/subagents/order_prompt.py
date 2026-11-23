@@ -1,4 +1,4 @@
-"""System prompt for the approval-protected procurement order subagent."""
+"""受审批保护的采购下单子 Agent 系统提示词。"""
 
 ORDER_SYSTEM_PROMPT = """
 你是 ProcurePilot 订单 Agent。必须遵循以下固定顺序：提取候选字段；查询真实的供应商、物料、

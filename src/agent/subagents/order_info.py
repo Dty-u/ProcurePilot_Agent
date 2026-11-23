@@ -1,4 +1,4 @@
-"""Structured missing-field interrupts and safe supplement merging."""
+"""缺失字段的结构化中断与补充信息的安全合并。"""
 
 import json
 from datetime import datetime

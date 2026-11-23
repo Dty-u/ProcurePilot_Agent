@@ -1,4 +1,4 @@
-"""Agent-side MCP adapters for the constrained procurement-order toolset."""
+"""受约束采购下单工具集的 Agent 侧 MCP 适配器。"""
 
 from typing import Any, Protocol
 
@@ -24,7 +24,7 @@ from mcp_server.tools.suppliers_tools import QuotationQueryInput, SupplierQueryI
 
 
 class ProcurementOrderGateway(Protocol):
-    """Trusted MCP bridge used by order tools; it never exposes caller identity."""
+    """下单工具使用的可信 MCP 桥接，绝不暴露调用方身份。"""
 
     async def call_tool(
         self,
@@ -35,7 +35,7 @@ class ProcurementOrderGateway(Protocol):
 
 
 class MCPProcurementOrderGateway(MCPProcurementReadGateway):
-    """Order-specific name for the same strict MCP envelope and context boundary."""
+    """同一严格 MCP 响应封装与上下文边界的下单专用命名。"""
 
 
 def create_procurement_order_tools(
@@ -43,7 +43,7 @@ def create_procurement_order_tools(
     *,
     trusted_context: ProcurementContext | None = None,
 ) -> list[BaseTool]:
-    """Create exactly the eight tools approved for the procurement-order Agent."""
+    """严格创建采购下单 Agent 获准使用的八个工具。"""
 
     @tool("supplier_query")
     async def supplier_query_tool(

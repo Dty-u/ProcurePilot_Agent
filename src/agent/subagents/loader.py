@@ -1,4 +1,4 @@
-"""Load reviewed subagent declarations and bind their minimum tool sets."""
+"""加载已审核的子 Agent 声明，并绑定其最小工具集。"""
 
 from collections.abc import Sequence
 from pathlib import Path
@@ -13,7 +13,7 @@ _REQUIRED_CONFIG_NAMES = frozenset({"procurement-analyst", "procurement-order"})
 
 
 class SubagentConfig(BaseModel):
-    """Reviewed, declarative settings for one DeepAgents subagent."""
+    """单个 DeepAgents 子 Agent 的已审核声明式配置。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -28,7 +28,7 @@ ToolT = TypeVar("ToolT", str, BaseTool)
 
 
 def load_subagent_configs(config_directory: Path | None = None) -> dict[str, SubagentConfig]:
-    """Load the two repository-reviewed YAML declarations without external I/O."""
+    """加载仓库内已审核的两份 YAML 声明，不进行外部 I/O。"""
 
     directory = config_directory or _CONFIG_DIRECTORY
     configs: dict[str, SubagentConfig] = {}
@@ -68,7 +68,7 @@ def resolve_subagent_tools(config: SubagentConfig, available_tools: Sequence[Bas
 def resolve_subagent_tools(
     config: SubagentConfig, available_tools: Sequence[ToolT]
 ) -> list[ToolT]:
-    """Return exactly the declared tools, preserving YAML declaration order."""
+    """严格返回声明的工具，并保持 YAML 中的声明顺序。"""
 
     tools_by_name: dict[str, ToolT] = {}
     for tool in available_tools:

@@ -1,4 +1,4 @@
-"""Parameter-bound, expiring, one-time order approval grants."""
+"""与参数绑定、会过期且一次性的订单审批授权。"""
 
 from dataclasses import dataclass, replace
 from datetime import datetime

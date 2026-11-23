@@ -1,4 +1,4 @@
-"""Read-only catalog and inventory application services."""
+"""只读的物料目录与库存应用服务。"""
 
 from collections.abc import Callable
 from datetime import datetime
@@ -42,7 +42,7 @@ class PartService:
     async def find_by_supplier(
         self, supplier_id: str, *, at: datetime, limit: int
     ) -> list[Part]:
-        """Return distinct parts backed by currently valid supplier quotations."""
+        """返回当前有有效供应商报价支撑的去重物料。"""
         async with self._uow_factory() as uow:
             quotations = await uow.quotations.search(
                 QuotationSearchCriteria(supplier_id=supplier_id, limit=500)
@@ -81,7 +81,7 @@ class InventoryService:
 
 
 class OrderQueryService:
-    """Read-only purchase-order application service."""
+    """只读的采购订单应用服务。"""
 
     def __init__(self, uow_factory: UnitOfWorkFactory) -> None:
         self._uow_factory = uow_factory

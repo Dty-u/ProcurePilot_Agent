@@ -1,4 +1,4 @@
-"""Inventory MCP tool adapters."""
+"""库存 MCP 工具适配器。"""
 
 import asyncio
 from decimal import Decimal

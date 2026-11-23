@@ -1,4 +1,4 @@
-"""Trusted caller identity contracts for the MCP adapter."""
+"""MCP 适配器的可信调用方身份契约。"""
 
 from typing import Literal, Protocol
 
@@ -17,7 +17,7 @@ SAFE_IDENTIFIER = r"^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
 
 
 class ToolCallerContext(BaseModel):
-    """Server-provided identity; never accepted as a business tool argument."""
+    """由服务端提供的身份，绝不作为业务工具参数接收。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
 
@@ -32,7 +32,7 @@ class CallerContextProvider(Protocol):
 
 
 class MissingCallerContextProvider:
-    """Secure default used until a trusted authentication adapter is configured."""
+    """在配置可信认证适配器之前使用的安全默认值。"""
 
     async def get_context(self) -> ToolCallerContext:
         raise PermissionDeniedError("trusted caller context is not configured")

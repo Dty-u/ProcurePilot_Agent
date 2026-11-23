@@ -1,2 +1,2 @@
-"""Read-only procurement MCP tools."""
+"""只读采购 MCP 工具。"""
 

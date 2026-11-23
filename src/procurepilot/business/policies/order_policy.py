@@ -1,4 +1,4 @@
-"""Allowed purchase-order state transitions."""
+"""允许的采购订单状态流转。"""
 
 from procurepilot.business.enums import OrderStatus
 from procurepilot.business.errors import InvalidOrderStateError
@@ -14,7 +14,7 @@ _ALLOWED_TRANSITIONS: dict[OrderStatus, frozenset[OrderStatus]] = {
 
 
 def ensure_order_transition(current: OrderStatus, target: OrderStatus) -> None:
-    """Raise when an order cannot move directly to the requested status."""
+    """订单无法直接流转到目标状态时抛出异常。"""
     if target not in _ALLOWED_TRANSITIONS[current]:
         raise InvalidOrderStateError(
             f"Order cannot transition from {current.value} to {target.value}"

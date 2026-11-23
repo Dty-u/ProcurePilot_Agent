@@ -1,4 +1,4 @@
-"""Finite values used by procurement domain objects."""
+"""采购领域对象使用的有限枚举值。"""
 
 from enum import StrEnum
 

@@ -1,4 +1,4 @@
-"""Explicit MySQL engine construction with test-database safety guards."""
+"""显式构造 MySQL 引擎，并带有测试库安全防护。"""
 
 from dataclasses import dataclass
 
@@ -15,7 +15,7 @@ from procurepilot.config import Settings
 
 
 class UnsafeDatabaseError(RuntimeError):
-    """A database operation could affect a non-test database."""
+    """数据库操作可能影响非测试数据库。"""
 
 
 @dataclass(frozen=True, slots=True)
@@ -43,7 +43,7 @@ class DatabaseEngineOptions:
 
 
 def ensure_safe_test_database(settings: Settings) -> None:
-    """Fail closed unless the configuration targets a dedicated test database."""
+    """除非配置指向专用测试库，否则一律拒绝执行。"""
     if settings.app_env != "test" or settings.mysql_dsn is None:
         raise UnsafeDatabaseError("database tests require APP_ENV=test and MYSQL_DSN")
     database_name = make_url(settings.mysql_dsn.get_secret_value()).database
@@ -56,7 +56,7 @@ def create_database_engine(
     *,
     require_test_database: bool = False,
 ) -> AsyncEngine:
-    """Create an engine without opening a connection until first use."""
+    """创建引擎，首次使用前不打开连接。"""
     if require_test_database:
         ensure_safe_test_database(settings)
     options = DatabaseEngineOptions.from_settings(settings)
@@ -71,5 +71,5 @@ def create_database_engine(
 
 
 def create_session_factory(engine: AsyncEngine) -> async_sessionmaker[AsyncSession]:
-    """Create UoW-scoped sessions that never expire domain results on commit."""
+    """创建 UoW 作用域的会话，提交时不使已返回的领域结果过期。"""
     return async_sessionmaker(engine, expire_on_commit=False, autoflush=False)

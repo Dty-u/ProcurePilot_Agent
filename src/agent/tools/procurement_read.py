@@ -1,4 +1,4 @@
-"""LangChain adapters for the six read-only procurement MCP capabilities."""
+"""六项只读采购 MCP 能力的 LangChain 适配器。"""
 
 from typing import Any, Protocol
 
@@ -18,7 +18,7 @@ from mcp_server.tools.suppliers_tools import QuotationQueryInput, SupplierQueryI
 
 
 class ProcurementReadGateway(Protocol):
-    """Trusted bridge to the MCP read layer; identity is not a tool argument."""
+    """通往 MCP 只读层的可信桥接；身份不作为工具参数传入。"""
 
     async def call_tool(
         self,
@@ -35,7 +35,7 @@ class MCPClientProtocol(Protocol):
 
 
 class MCPProcurementReadGateway:
-    """Parse MCP responses from a client already bound to trusted identity."""
+    """解析来自已绑定可信身份客户端的 MCP 响应。"""
 
     def __init__(
         self,
@@ -153,7 +153,7 @@ def create_procurement_read_tools(
     *,
     trusted_context: ProcurementContext | None = None,
 ) -> list[BaseTool]:
-    """Create the minimal read-only toolset available to the analyst."""
+    """创建分析 Agent 可用的最小只读工具集。"""
 
     @tool("supplier_query")
     async def supplier_query_tool(

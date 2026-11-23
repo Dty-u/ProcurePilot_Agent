@@ -1,4 +1,4 @@
-"""Trusted runtime context supplied to Agent tools by the application."""
+"""由应用注入给 Agent 工具的可信运行时上下文。"""
 
 from pydantic import BaseModel, ConfigDict, Field
 

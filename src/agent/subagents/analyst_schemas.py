@@ -1,4 +1,4 @@
-"""Validated inputs and outputs for procurement analysis."""
+"""采购分析的已校验输入与输出模型。"""
 
 from datetime import datetime
 from decimal import Decimal

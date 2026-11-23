@@ -1,4 +1,4 @@
-"""In-memory repository implementations with optimistic transaction semantics."""
+"""具备乐观事务语义的内存仓储实现。"""
 
 from collections.abc import Iterable
 from copy import deepcopy

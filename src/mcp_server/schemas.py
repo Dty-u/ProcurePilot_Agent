@@ -1,4 +1,4 @@
-"""Stable response contracts shared by all MCP tools."""
+"""所有 MCP 工具共用的稳定响应契约。"""
 
 from typing import Generic, Literal, TypeVar
 
@@ -16,13 +16,13 @@ ToolErrorCode = Literal[
 
 
 class StrictInput(BaseModel):
-    """Base model for MCP JSON arguments that rejects unexpected fields."""
+    """MCP JSON 参数的基础模型，拒绝未声明字段。"""
 
     model_config = ConfigDict(extra="forbid")
 
 
 class ToolError(BaseModel):
-    """A safe, machine-readable tool failure."""
+    """安全、机器可读的工具失败信息。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
 
@@ -35,7 +35,7 @@ DataT = TypeVar("DataT")
 
 
 class ToolEnvelope(BaseModel, Generic[DataT]):
-    """Invariant response envelope returned by every MCP tool."""
+    """每个 MCP 工具统一返回的固定响应封装。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
 
